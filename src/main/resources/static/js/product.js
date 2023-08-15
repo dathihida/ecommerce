@@ -4,6 +4,8 @@ app.controller("controller", function($scope, $http){
     $scope.form = {}
     $scope.items = []
     $scope.categorys = []
+    $scope.details=[]
+    
     $scope.reset = function(){
         // $scope.form = {gender: true, country:'VN'};
     }
@@ -25,6 +27,29 @@ app.controller("controller", function($scope, $http){
         }).catch(error => {
             console.log("Error", error)
         })
+	}
+	
+/*	var order = angular.copy(this);
+			//thuc hien dat hanh
+			$http.post("http://localhost:8080/rest/orders", order).then(resp=>{
+				alert("dat hang thanh cong");
+				$scope.cart.clear();
+				window.location.href = `http://localhost:8080/order/detail/` + resp.data.id;
+				console.log(resp.data.id)
+			}).catch(error=>{
+				alert("loi dat hang");
+				console.log(error);
+			})*/
+	
+	$scope.showDetail = function(id){
+		/*var url = `${host}/products/${id}`;*/
+		$http.get(`http://localhost:8080/product/detail/${id}`).then(resp => {
+			/*window.location.href = `http://localhost:8080/product/detail/`+ resp.data.id;*/
+			$scope.details = resp.data;
+			console.log("detail", resp.data);
+		}).catch(error=>{
+			console.log("Error", error);
+		})
 	}
 	
     $scope.loadByCategory = function(id){
@@ -52,6 +77,7 @@ app.controller("controller", function($scope, $http){
             console.log("Error", error)
         });
     }
+    
     $scope.create = function(){
         var item = angular.copy($scope.form);
         var url = `${host}/products`;
@@ -110,12 +136,7 @@ app.controller("controller", function($scope, $http){
             return this.items
             	.map(item=>item.qty)
             	.reduce((total, qty) => total += qty, 0);
-        }/*,
-        get count(){ // tính tổng số lượng các mặt hàng trong giỏ
-            return this.items
-            	.map(item => item.qty)
-                .reduce((total, qty) => total += qty, 0);
-        }*/,
+        },
         get amount(){
             return this.items.map(item=>item.qty * item.price).reduce((total, qty)=> total+=qty,0);
         },

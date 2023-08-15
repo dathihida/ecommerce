@@ -31,6 +31,7 @@ public class AuthorityRestController {
 		}
 		return authorityService.findAll();
 	}
+	
 	@PostMapping
 	public Authority post(@RequestBody Authority auth) {
 		return authorityService.create(auth);

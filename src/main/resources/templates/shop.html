@@ -196,7 +196,8 @@
                         </div>
                     </div>
                     <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">{{pro.name}}</a>
+                        <a class="h6 text-decoration-none text-truncate" th:href="@{/product/detail/{{pro.id}}}">{{pro.name}}</a>
+                        <button ng-click="showDetail(pro.id)">sreach</button>
                         <hr>
                         <a class="h6 text-decoration-none text-truncate" href="">{{pro.category.name}}</a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
