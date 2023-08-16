@@ -21,6 +21,11 @@ public class HomeController {
 		return "shop";
 	}
 	
+	@RequestMapping("signup")
+	public String signup() {
+		return "signup";
+	}
+	
 //	@RequestMapping("/products/{id}")
 //	public Product detail(@RequestBody @PathVariable("id") Integer id) {
 //		return productService.findById(id);

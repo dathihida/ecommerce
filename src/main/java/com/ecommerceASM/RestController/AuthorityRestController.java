@@ -1,6 +1,8 @@
 package com.ecommerceASM.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ecommerceASM.Impl.AccountServiceImpL;
+import com.ecommerceASM.Impl.AuthoritiesServiceImpl;
+import com.ecommerceASM.Impl.RolesServiceImpl;
 import com.ecommerceASM.entity.Authority;
 import com.ecommerceASM.service.AuthorityService;
 
@@ -22,7 +27,13 @@ import com.ecommerceASM.service.AuthorityService;
 @RequestMapping("rest/authorities")
 public class AuthorityRestController {
 	@Autowired
-	AuthorityService authorityService;
+	AuthoritiesServiceImpl authorityService;
+	
+	@Autowired
+	RolesServiceImpl rolesService;
+	
+	@Autowired
+	AccountServiceImpL accountService;
 	
 	@GetMapping
 	public List<Authority> findAll(@RequestParam("admin") Optional<Boolean> admin){
@@ -30,6 +41,16 @@ public class AuthorityRestController {
 			return authorityService.findAuthoritiesOfAdministrators();
 		}
 		return authorityService.findAll();
+	}
+	
+	//day role
+	@GetMapping("/rest/roleauthorities")
+	public Map<String, Object> getAuthorities(){
+		Map<String, Object> data = new HashMap<>();
+		data.put("authorities", authorityService.findAll());
+		data.put("roles", rolesService.findAll());
+		data.put("accounts", accountService.findAll());
+		return data;
 	}
 	
 	@PostMapping

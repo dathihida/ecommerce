@@ -32,5 +32,11 @@ public class AccountServiceImpL implements AccountService{
 		// TODO Auto-generated method stub
 		return accountDAO.getAdministrators();
 	}
+
+	@Override
+	public Account create(Account account) {
+		// TODO Auto-generated method stub
+		return accountDAO.save(account);
+	}
 	
 }
