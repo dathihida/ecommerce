@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.hibernate.annotations.NaturalId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ecommerceASM.Impl.AccountServiceImpL;
 import com.ecommerceASM.Impl.AuthoritiesServiceImpl;
 import com.ecommerceASM.Impl.RolesServiceImpl;
+import com.ecommerceASM.dao.AuthorityDAO;
 import com.ecommerceASM.entity.Authority;
 import com.ecommerceASM.service.AuthorityService;
 
@@ -34,6 +36,10 @@ public class AuthorityRestController {
 	
 	@Autowired
 	AccountServiceImpL accountService;
+	
+	@Autowired
+	AuthorityDAO adao;
+	
 	
 	@GetMapping
 	public List<Authority> findAll(@RequestParam("admin") Optional<Boolean> admin){
@@ -61,5 +67,15 @@ public class AuthorityRestController {
 	@DeleteMapping("{id}")
 	public void delete(@PathVariable("id") Integer id) {
 		authorityService.delete(id);
+	}
+	
+	@PostMapping("/rest/roleauthorities")
+	public Authority create(@RequestBody Authority authorities) {
+		return adao.save(authorities);
+	}
+	
+	@DeleteMapping("/rest/roleauthorities/{id}")
+	public void deleteRole(@PathVariable("id") Integer id) {
+		adao.deleteById(id);
 	}
 }

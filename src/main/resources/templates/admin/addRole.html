@@ -33,7 +33,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>
 
-<body ng-app="app" ng-controller="product-ctrl">
+<body ng-app="app" ng-controller="ctrl">
     <!-- <div class="container-xxl position-relative bg-white d-flex p-0"> -->
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -140,157 +140,37 @@
                 </div>
             </nav>
             <!-- Navbar End -->
-
-			<!-- From Start -->
-			<div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    <div class="col-sm-12 col-xl-12">
-                        <div class="bg-light rounded h-100 p-4">
-                            <h6 class="mb-4">Floating Label</h6>
-                            <div class="form-floating mb-3">
-                                <input ng-model="form.name" class="form-control">
-                                <label for="floatingInput">Name</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input ng-model="form.price" class="form-control">
-                                <label for="floatingPassword">Price</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                            	<div class="mb-3">
-	                            	<label for="formFile" class="form-label">Image</label>
-	                                <input ng-model="form.image" class="form-control" type="file" id="formFile" 
-	                                	onchange="angular.element(this).scope().imageChanged(this.files)">
-                            	</div> 
-                            </div>
-                            <div class="form-floating mb-3">
-                                <img ng-src="/images/{{form.image}}" style="width: 50%; height: 50%">
-                            </div>
-                            <div class="form-floating mb-3">
-                                <select ng-model="form.category.id" class="form-select" id="floatingSelect"
-                                    aria-label="Floating label select example">
-                                    <option ng-repeat="c in cates" ng-value="c.id">{{c.name}}</option>
-                                </select>
-                                <label for="floatingSelect">Category</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input ng-model="form.createDate" type="date" class="form-control">
-                                <label for="floatingPassword">CreateDate</label>
-                            </div>
-                            <div class="form-floating">
-                                <fieldset class="row mb-3">
-                                    <legend class="col-form-label col-sm-2 pt-0">Availabe</legend>
-                                    <div class="col-sm-10">
-                                        <div class="form-check">
-                                            <input ng-model="form.available" class="form-check-input" type="radio" name="gridRadios"
-                                                id="gridRadios1" ng-value="true">
-                                            <label class="form-check-label" for="gridRadios1">
-                                                Yes
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input ng-model="form.available" class="form-check-input" type="radio" name="gridRadios"
-                                                id="gridRadios2" ng-value="false">
-                                            <label class="form-check-label" for="gridRadios2">
-                                                No
-                                            </label>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </div>
-                            <button ng-click="create()" type="submit" class="btn btn-primary">Create</button>
-                            <button ng-click="update()" type="submit" class="btn btn-primary">Update</button>
-                            <button ng-click="delete(form)" type="submit" class="btn btn-primary">Delete</button>
-                            <button ng-click="reset()" type="submit" class="btn btn-primary">Reset</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-			<!-- From End -->
 			
             <!-- Table Start -->
-            <div class="container-fluid pt-4 px-4" ng-if="items">
+            <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-12">
                         <div class="bg-light rounded h-100 p-4">
-                            <h6 class="mb-4">Product Table</h6>
+                            <h6 class="mb-4">Role Table</h6>
                             <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Id</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Price</th>
-                                            <th scope="col">CreateDate</th>
-                                            <th scope="col">Image</th>
-                                            <th scope="col">Category</th>
-                                            <th scope="col">Available</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr ng-repeat="p in pager.items">
-                                            <td>{{p.id}}</td>
-                                            <td>{{p.name}}</td>
-                                            <td>{{p.createDate | date:'dd-MM-yyyy'}}</td>
-                                            <td>{{p.image}}</td>
-                                            <td>{{p.category.name}}</td>
-                                            <td>{{p.available?'Yes':'No'}}</td>
-                                            <td>
-                                            	<div>
-                                            		<button ng-click="edit(p)">Edit</button>
-                                            		<button ng-click="delete(p)">Delete</button>
-                                            	</div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <!-- Page Start -->
-								<nav aria-label="Page navigation example">
-								  <ul class="pagination justify-content-center">
-								    <li class="page-item">
-								      <a class="page-link" ng-click="pager.first()" tabindex="-1">First</a>
-								    </li>
-								    <li class="page-item">
-								    	<a class="page-link" ng-disabled="page == 1" ng-click="pager.prev()">Prevs</a>
-								    </li>
-								    
-								    
-								    <li class="page-item"><a class="page-link" href="#">{{pager.page +1}} of {{pager.count}}</a></li>
-								    
-								    
-								    
-								    <li class="page-item">
-								    	<a class="page-link" ng-click="pager.next()">Next</a>
-								    </li>
-								    <li class="page-item">
-								      <a class="page-link" ng-click="pager.last()">Last</a>
-								    </li>
-								  </ul>
-								</nav>
+                                <table ng-if="db" style="width: 100%; border: 1;">
+							        <thead>
+							            <tr>
+							                <th></th>
+							                <th ng-repeat="role in db.roles">{{role.name}}</th>
+							            </tr>
+							        </thead>
+							        <tbody>
+							            <tr ng-repeat="acc in db.accounts">
+							                <th>{{acc.username}}</th>
+							                <th ng-repeat="role in db.roles">
+							                    <input type="checkbox"
+							                    ng-checked="index_of(acc.username, role.id) >=0"
+							                    ng-click="update(acc.username, role.id)">
+							                </th>
+							            </tr>
+							        </tbody>
+							    </table>
                         </div>
                     </div>
                 </div>
-                
-                
             </div>
             <!-- Table End -->
-            
-			
-			
-            <!-- Footer Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="bg-light rounded-top p-4">
-                    <div class="row">
-                        <div class="col-12 col-sm-6 text-center text-sm-start">
-                            &copy; <a href="#">Your Site Name</a>, All Right Reserved. 
-                        </div>
-                        <div class="col-12 col-sm-6 text-center text-sm-end">
-                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                            Designed By <a href="https://htmlcodex.com">HTML Codex</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Footer End -->
         </div>
         <!-- Content End -->
 
@@ -312,7 +192,7 @@
 
     <!-- Template Javascript -->
     <script th:src="@{/admin/js/main.js}"></script>
-    <script th:src="@{/admin/js/product-ctrl.js}"></script>
+    <script th:src="@{/admin/js/role.js}"></script>
 </body>
 
 </html>

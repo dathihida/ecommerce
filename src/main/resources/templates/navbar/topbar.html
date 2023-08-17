@@ -16,6 +16,8 @@
 						    <div th:text="${#authentication.name}">
 							</div>
                         </button>
+                        
+                        
                         <div class="dropdown-menu dropdown-menu-right">
 	                        <div sec:authorize="hasRole('ROLE_CUST')">
 							  	<a class="btn" th:href="@{/security/logout}">Log Out</a>

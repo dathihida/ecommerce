@@ -11,11 +11,6 @@ app.controller("userctrl", function($scope, $http){
         $scope.db = resp.data;
     })
 
-/*    $scope.chay = function(){
-        $scope.create();
-        $scope.createAuthority();
-    }*/
-
     //create account
     $scope.create = function(){
         var item = angular.copy($scope.form);
@@ -29,6 +24,7 @@ app.controller("userctrl", function($scope, $http){
             
             $scope.createAuthority(item.username)
             window.location.href = `http://localhost:8080/security/login/success`;
+            console.log("ten:", item.username)
         }).catch(error=>{
             console.log(error);
         })

@@ -23,4 +23,9 @@ public class AdminController {
 	public String chart() {
 		return "admin/chart";
 	}
+	
+	@RequestMapping("/admin/addRole")
+	public String addRole() {
+		return "admin/addRole";
+	}
 }
