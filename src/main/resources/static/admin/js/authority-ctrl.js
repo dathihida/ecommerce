@@ -8,15 +8,18 @@ app.controller("ctrl", function ($scope, $http, $location){
 		//load all roles
 		$http.get("/rest/roles").then(resp =>{
 			$scope.roles = resp.data;
+			console.log(resp.data)
 		})
 		
 		//load staffs and directors
 		$http.get("/rest/accounts?admin=true").then(resp =>{
 			$scope.admins = resp.data;
+			console.log(resp.data)
 		})
 		
 		$http.get("/rest/authorities?admin=true").then(resp=>{
 			$scope.authorities = resp.data;
+			console.log(resp.data)
 		}).catch(error =>{
 			$location.path("/unauthorized");
 		})

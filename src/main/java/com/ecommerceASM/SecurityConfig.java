@@ -77,12 +77,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.addLogoutHandler(new SecurityContextLogoutHandler())
 		.clearAuthentication(true);
 		
-		http.oauth2Login()
-			.loginPage("/auth/login/form")//dia chi chuyen ve form dang nhap
-			.defaultSuccessUrl("/oauth2/login/success", true)//dang thanh cong chuyen ve
-			.failureUrl("/auth/login/error")//dang that bai
-			.authorizationEndpoint()
-			.baseUri("/oauth2/autorization");//khai vao form 
+//		http.oauth2Login()
+//			.loginPage("/auth/login/form")//dia chi chuyen ve form dang nhap
+//			.defaultSuccessUrl("/oauth2/login/success", true)//dang thanh cong chuyen ve
+//			.failureUrl("/auth/login/error")//dang that bai
+//			.authorizationEndpoint()
+//			.baseUri("/oauth2/autorization");//khai vao form 
 	}
 	
 	@Bean

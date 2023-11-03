@@ -1,7 +1,7 @@
 package com.ecommerceASM.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+//import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,9 +44,9 @@ public class SecurityController {
 		return "signin";
 	}
 	
-	@RequestMapping("oauth2/login/success")
-	public String success(OAuth2AuthenticationToken oauth2) {
-//		accountService
-		return "forward:/security/login/success";
-	}
+//	@RequestMapping("oauth2/login/success")
+//	public String success(OAuth2AuthenticationToken oauth2) {
+////		accountService
+//		return "forward:/security/login/success";
+//	}
 }

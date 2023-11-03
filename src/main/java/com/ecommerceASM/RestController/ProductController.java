@@ -63,6 +63,7 @@ public class ProductController {
 		productDao.deleteById(id);
 		return ResponseEntity.ok().build();
 	}
+	
 	//list product with category
 	@GetMapping("/rest/productsbycategory/{id}")
 	public ResponseEntity<List<Product>> getCategory(@PathVariable("id") String id) {

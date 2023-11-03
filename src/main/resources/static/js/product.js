@@ -216,4 +216,29 @@ app.controller("controller", function($scope, $http){
 			window.scrollTo(0, 0);
 		}
 	}
+	
+	
+	const itemsPerPage = 5; // Số lượng item mỗi trang
+	let currentPage = 1; // Trang hiện tại
+	
+	function displayItems(page) {
+	  const startIndex = (page - 1) * itemsPerPage;
+	  const endIndex = startIndex + itemsPerPage;
+	
+	  for (let i = startIndex; i < endIndex && i < $scope.items.length; i++) {
+	    const item = $scope.items[i];
+	    // Hiển thị item lên giao diện
+	    
+	  }
+	}
+	
+	// Gọi hàm hiển thị item ban đầu
+	displayItems(currentPage);
+	
+	const loadMoreButton = document.getElementById('load-more-btn'); // Đặt ID cho nút "Load More"
+	
+	loadMoreButton.addEventListener('click', () => {
+	  currentPage++; // Tăng số trang lên khi nút được bấm
+	  displayItems(currentPage); // Hiển thị thêm item trên trang mới
+	});
 });

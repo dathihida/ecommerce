@@ -24,6 +24,7 @@ app.controller("product-ctrl", function($scope, $http){
 		$scope.form = angular.copy(p);
 		 window.scrollTo(0, 0);
 	}
+	
 	//upload hinh anh
 	$scope.imageChanged = function(files){
 		var data = new FormData();
